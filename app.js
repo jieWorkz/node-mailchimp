@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
@@ -19,11 +21,11 @@ app.get("/", function(req, res){
 app.post("/", function(req, res){
 
   mailchimp.setConfig({
-    apiKey: "a21d4bee70f29b2d38354c14ad568fa7-us21",
-    server: "us21",
+    apiKey: process.env.API_KEY,
+    server: process.env.API_SERVER,
   });
 
-  const listID = "f3710c0769";
+  const listID = process.env.API_ID;
 
   const subscribingUser = {
     firstName: req.body.fname,
